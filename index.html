@@ -43,7 +43,12 @@ section{scroll-margin-top:72px}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
 .overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(10,22,42,.92) 0%,rgba(10,22,42,.72) 45%,rgba(10,22,42,.45) 100%)}
 #ambient{position:absolute;inset:0;z-index:1;pointer-events:none}
-.heroContent{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 24px;width:100%}
+.heroContent{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 24px;width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.heroText{min-width:0}
+.heroPhoto{position:relative;justify-self:end;width:100%;max-width:380px}
+.heroPhoto img{width:100%;height:auto;display:block;border-radius:20px;border:1px solid rgba(99,211,255,.35);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06)}
+.heroPhoto::after{content:'';position:absolute;inset:-18px;border-radius:28px;background:radial-gradient(closest-side,rgba(99,211,255,.22),transparent 70%);z-index:-1}
+@media(max-width:900px){.heroContent{grid-template-columns:1fr;gap:28px}.heroPhoto{display:none}}
 .tagline{font-family:var(--fm);font-size:.78rem;letter-spacing:.28em;color:var(--cyan);margin-bottom:20px}
 .name{font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800;color:#fff;margin-bottom:14px}
 .role{font-family:var(--fh);font-size:clamp(1.05rem,2vw,1.35rem);font-weight:600;color:var(--cyan);margin-bottom:14px}
@@ -64,7 +69,7 @@ section{scroll-margin-top:72px}
 .scrollDown{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;background:none;border:none;cursor:pointer;padding:10px}
 .pulse{display:block;width:2px;height:44px;background:linear-gradient(var(--cyan),transparent);animation:pd 1.8s ease-in-out infinite}
 @keyframes pd{0%{transform:scaleY(.3);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}100%{transform:scaleY(.3);opacity:.4}}
-@media(max-width:600px){.heroContent{text-align:center}.ctas,.secLinks{justify-content:center}}
+@media(max-width:600px){.heroText{text-align:center}.ctas,.secLinks{justify-content:center}}
 /* CARDS */
 .about p{max-width:760px;color:var(--txt-l2);font-size:1.02rem;margin-bottom:14px}
 .timeline{display:flex;flex-direction:column;gap:28px}
@@ -119,6 +124,7 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
   <div class="overlay"></div>
   <div id="ambient"></div>
   <div class="heroContent">
+   <div class="heroText">
     <p class="tagline" data-stagger>AI · FULL-STACK · PRODUCTION SYSTEMS</p>
     <h1 class="name" data-stagger>SUMANA<br/>SOMINENI</h1>
     <p class="role" data-stagger>AI Software Developer</p>
@@ -128,9 +134,13 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
     </div>
     <div class="secLinks" data-stagger>
       <a href="https://www.linkedin.com/in/sumana-somineni09" target="_blank">LinkedIn</a>
-      <a href="https://github.com/" target="_blank">GitHub</a>
+      <a href="https://github.com/sumana-somineni09" target="_blank">GitHub</a>
       <a href="mailto:sumanasomineni0909@gmail.com">Email</a>
     </div>
+   </div>
+   <div class="heroPhoto" data-stagger>
+     <img src="sumana.jpg" alt="Sumana Somineni" />
+   </div>
   </div>
   <div class="controls">
     <button id="playBtn" aria-label="Pause video">❚❚</button>
@@ -155,13 +165,13 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
     <h2 class="title" data-reveal>Where I've built</h2>
     <div class="timeline">
       <article class="card" data-reveal>
-        <div class="cardHead"><h3>AI Software Developer · <span class="company">CariCanary</span></h3><span class="meta">Mar 2026 – Present · Richmond, KY · Remote</span></div>
+        <div class="cardHead"><h3>AI Software Developer · <span class="company">CariCanary</span></h3><span class="meta">Jan 2026 – Present · Richmond, KY · Remote</span></div>
         <p class="summary">Production AI and full-stack healthcare workflows across Python/FastAPI, Vue 3, Laravel/PHP, MySQL, Redis, and DigitalOcean — supporting resident operations across 9 healthcare facilities.</p>
         <ul class="bullets">
-          <li>Architected and deployed a real-time facial-recognition and automated attendance microservice (InsightFace/ArcFace, OpenCV, ONNX Runtime), achieving ~95% recognition accuracy across 100 validation images.</li>
-          <li>Built the Vue 3 facial-recognition interface and integrated 25+ REST API endpoints across Vue 3, Laravel, and FastAPI — photo validation, multi-image enrollment, pose checks, group recognition, attendance recording.</li>
-          <li>Delivered automated notification workflows for scheduled and missed activities across in-app and email channels using Laravel, Redis, and bearer-token-secured APIs.</li>
-          <li>Owned resident, activity, attendance, and compliance features end to end; supported zero-downtime releases with GitHub Actions, Ansible, Nginx, and Supervisor on DigitalOcean.</li>
+          <li>Architected a real-time facial-recognition microservice in Python/FastAPI (InsightFace, ArcFace, OpenCV, ONNX Runtime): ~95% accuracy on 100 validation images, ~2s end-to-end latency, deployed across 9 healthcare facilities.</li>
+          <li>Developed 25+ secure FastAPI REST endpoints for photo validation, facial enrollment, embedding generation, and individual and multi-person recognition, secured with JWT authentication and role-based access control (RBAC).</li>
+          <li>Built KPI dashboards for monthly and per-activity performance and individual resident attendance, plus automated in-app and email notification workflows (Laravel, Redis) that lifted engagement ~60% and cut manual staff follow-up ~90%.</li>
+          <li>Established zero-downtime deployments via GitHub Actions, Ansible, DigitalOcean, Nginx, and Supervisor with health checks, versioned rollbacks, and CI-driven staging validation.</li>
         </ul>
         <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">InsightFace</span><span class="tag">ONNX</span><span class="tag">Vue 3</span><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">DigitalOcean</span></div>
       </article>
@@ -170,22 +180,23 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
         <p class="summary">End-to-end conversational AI systems spanning full-stack development, RAG, LLM integration, controlled experimentation, and research publication.</p>
         <ul class="bullets">
           <li>Built a full-stack RAG-powered sales coaching role-play chatbot (Flutter, Flask, Gemini via LangChain) that won 1st place and $5,000 at Scholars Tank 2025.</li>
-          <li>Designed four conversational LLM architectures on Llama 3.1 — local (Docker + Ollama) and cloud (Groq), direct REST vs. LangChain orchestration.</li>
-          <li>Ran 1,000+ controlled experiments analyzed in Power BI; best configuration reached ~22.9s end-to-end with a 100% turn success rate.</li>
+          <li>Designed and benchmarked four conversational AI architectures on Llama 3.1 — local (Docker + Ollama) and cloud (Groq), direct REST vs. LangChain — with reusable model-provider interfaces enabling local/cloud switching without duplicated integration code.</li>
+          <li>Ran 1,000+ controlled experiments across 100+ prompts, analyzed in Power BI: Cloud LangChain ~22.9s vs. Cloud Direct ~25.5s end-to-end at 100% turn success; isolated TTS as the largest latency contributor.</li>
           <li>Co-authored a comparative research paper on latency, reliability, privacy, cost, and maintainability trade-offs.</li>
         </ul>
         <div class="tags"><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Gemini</span><span class="tag">Llama 3.1</span><span class="tag">Ollama</span><span class="tag">Docker</span><span class="tag">Groq</span><span class="tag">Flutter</span><span class="tag">Flask</span><span class="tag">Power BI</span></div>
       </article>
       <article class="card" data-reveal>
         <div class="cardHead"><h3>Software Engineer – Product &amp; Platform Engineering · <span class="company">NxtWave</span></h3><span class="meta">Jan 2022 – Aug 2024 · Hyderabad, India</span></div>
-        <p class="summary">Backend, AI-integration, data, and platform features for a production learning platform serving 200K+ learners.</p>
+        <p class="summary">Backend, AI-integration, data, and platform features for a production learning platform serving 50K+ learners.</p>
         <ul class="bullets">
           <li>Built the backend and LLM-integration workflow for an AI-powered interview coach (Python, FastAPI, OpenAI, speech-to-text), reducing manual interview evaluation by ~90%.</li>
           <li>Migrated legacy monolith functionality into independently deployable microservices, reducing API latency by ~30% during peak usage.</li>
           <li>Built Python/SQL ETL workflows processing 100K–1M+ records; automated tests and static analysis helped reduce production defects by ~40%.</li>
-          <li>Deployed on GCP Cloud Run with IAM, Secret Manager, and Cloud Logging; implemented JWT authentication and role-based access control.</li>
+          <li>Shipped backend features for enrollment, coding labs, progress tracking, and analytics (Node.js, TypeScript, Java, Spring Boot) plus React dashboards.</li>
+          <li>Deployed and operated services across AWS and GCP — EC2 for service hosting, S3 for asset and dataset storage, Cloud Run with IAM, Secret Manager, JWT, and RBAC.</li>
         </ul>
-        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">OpenAI</span><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">GCP</span></div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">OpenAI</span><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">AWS</span><span class="tag">GCP</span></div>
       </article>
       <article class="card" data-reveal>
         <div class="cardHead"><h3>Data Science Intern – Machine Learning · <span class="company">Cyberaegis IT Solutions</span></h3><span class="meta">Jun 2020 – Dec 2020 · Hyderabad, India</span></div>
@@ -210,7 +221,7 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
         <h3>Facial Recognition &amp; Automated Attendance</h3>
         <div class="block"><strong>Problem</strong><p>Staff at senior-living facilities tracked resident attendance manually — slow, error-prone, and hard to audit.</p></div>
         <div class="block"><strong>What I built</strong><p>Real-time facial-recognition microservice: Python/FastAPI with InsightFace/ArcFace and ONNX Runtime, integrated with Vue 3 and Laravel through 25+ secured REST endpoints.</p></div>
-        <p class="outcome">~95% recognition accuracy · 9 facilities supported · reduced manual attendance workflows.</p>
+        <p class="outcome">~95% recognition accuracy · ~2s end-to-end latency · 9 facilities supported.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">InsightFace</span><span class="tag">ONNX</span><span class="tag">Vue 3</span><span class="tag">Laravel</span></div>
       </article>
       <article class="pcard" data-reveal>
@@ -226,13 +237,13 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
         <h3>Comparative LLM Systems Research</h3>
         <div class="block"><strong>Problem</strong><p>Which matters more for conversational AI performance — where the model runs, or how it's orchestrated?</p></div>
         <div class="block"><strong>What I built</strong><p>Four end-to-end architectures on Llama 3.1 (Local/Cloud × Direct/LangChain) sharing one speech pipeline with per-stage latency logging; 1,000+ controlled runs analyzed in Power BI.</p></div>
-        <p class="outcome">Cloud LangChain best at ~22.9s · deployment location outweighed orchestration overhead.</p>
+        <p class="outcome">Cloud LangChain ~22.9s vs. Cloud Direct ~25.5s · deployment location outweighed orchestration overhead · TTS the top latency contributor.</p>
         <div class="tags"><span class="tag">Llama 3.1</span><span class="tag">Ollama</span><span class="tag">Docker</span><span class="tag">Groq</span><span class="tag">LangChain</span><span class="tag">Power BI</span></div>
       </article>
       <article class="pcard" data-reveal>
-        <span class="context">NxtWave · 200K+ learner platform</span>
+        <span class="context">NxtWave · 50K+ learner platform</span>
         <h3>AI Interview Coach</h3>
-        <div class="block"><strong>Problem</strong><p>Manual mock-interview evaluation couldn't scale to hundreds of thousands of learners.</p></div>
+        <div class="block"><strong>Problem</strong><p>Manual mock-interview evaluation couldn't scale across a 50K+ learner platform.</p></div>
         <div class="block"><strong>What I built</strong><p>Speech-to-feedback pipeline — transcription, prompt construction, LLM evaluation, and response parsing behind FastAPI REST APIs.</p></div>
         <p class="outcome">~90% reduction in manual interview evaluation · deployed in production.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">OpenAI</span><span class="tag">Speech-to-Text</span></div>
@@ -247,7 +258,7 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
       <div data-reveal><div class="num" data-count="95" data-suffix="%">0</div><div class="mlabel">Facial-recognition accuracy</div></div>
       <div data-reveal><div class="num" data-count="25" data-suffix="+">0</div><div class="mlabel">REST APIs across 3 service layers</div></div>
       <div data-reveal><div class="num" data-count="1000" data-suffix="+">0</div><div class="mlabel">Controlled LLM experiments</div></div>
-      <div data-reveal><div class="num" data-count="200" data-suffix="K+">0</div><div class="mlabel">Learners on platform at NxtWave</div></div>
+      <div data-reveal><div class="num" data-count="50" data-suffix="K+">0</div><div class="mlabel">Learners on platform at NxtWave</div></div>
     </div>
   </div>
 </section>
@@ -259,10 +270,10 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
     <div class="skillsGrid">
       <div data-reveal><h3>AI &amp; LLM Engineering</h3><div class="tags"><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">LLM Integration</span><span class="tag">Prompt Engineering</span><span class="tag">Ollama</span><span class="tag">Gemini</span><span class="tag">OpenAI</span><span class="tag">Groq</span></div></div>
       <div data-reveal><h3>Computer Vision</h3><div class="tags"><span class="tag">InsightFace / ArcFace</span><span class="tag">OpenCV</span><span class="tag">ONNX Runtime</span><span class="tag">TensorFlow</span><span class="tag">CNNs</span></div></div>
-      <div data-reveal><h3>Backend</h3><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Laravel / PHP</span><span class="tag">Node.js</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">JWT / RBAC</span></div></div>
+      <div data-reveal><h3>Backend</h3><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Laravel / PHP</span><span class="tag">Node.js</span><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">JWT / RBAC</span></div></div>
       <div data-reveal><h3>Frontend</h3><div class="tags"><span class="tag">Vue 3</span><span class="tag">React</span><span class="tag">Flutter</span><span class="tag">TypeScript</span></div></div>
       <div data-reveal><h3>Data &amp; Databases</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span><span class="tag">SQL ETL</span><span class="tag">Power BI</span></div></div>
-      <div data-reveal><h3>Cloud &amp; DevOps</h3><div class="tags"><span class="tag">DigitalOcean</span><span class="tag">GCP</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">Ansible</span><span class="tag">Nginx</span><span class="tag">Supervisor</span></div></div>
+      <div data-reveal><h3>Cloud &amp; DevOps</h3><div class="tags"><span class="tag">AWS (EC2, S3)</span><span class="tag">GCP</span><span class="tag">DigitalOcean</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">Ansible</span><span class="tag">Nginx</span><span class="tag">Supervisor</span><span class="tag">Git</span><span class="tag">Linux</span></div></div>
     </div>
   </div>
 </section>
@@ -276,7 +287,7 @@ footer{text-align:center;padding:26px 0;font-size:.8rem;color:var(--txt-d2);bord
       <a class="email" href="mailto:sumanasomineni0909@gmail.com">sumanasomineni0909@gmail.com</a>
       <div class="contactLinks">
         <a href="https://www.linkedin.com/in/sumana-somineni09" target="_blank">LinkedIn</a>
-        <a href="https://github.com/" target="_blank">GitHub</a>
+        <a href="https://github.com/sumana-somineni09" target="_blank">GitHub</a>
       </div>
     </div>
   </div>
